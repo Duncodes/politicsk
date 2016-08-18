@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% load i18n %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% block title %}Select Site Themes{% endblock %}
+{%block main%}
+
+<div class="page-header">
+  <h2>{% trans 'Avilable themes'%}</h2>
+</div>
+<div class="row" style="margin-top: 2em">
+  <div class="col-md-3">
+    <ul class="list-group">
+      {%for theme in themes%}
+      <a href="#" class="list-group-item"><li class="list-group-item">{{ theme }}</li></a>
+      {%endfor%}
+    </ul>
+  </div>
+</div>
+{%endblock main%}
