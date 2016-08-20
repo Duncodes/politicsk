@@ -1,6 +1,6 @@
 from django.test import TestCase, Client, RequestFactory
 from django.core.urlresolvers import reverse
-from bootcamp.articles.models import Article
+from pkenya.articles.models import Article
 from django.contrib.auth.models import User
 
 

@@ -12,6 +12,7 @@ from pkenya.core.forms import ProfileForm, ChangePasswordForm
 from pkenya.feeds.models import Feed
 from pkenya.feeds.views import FEEDS_NUM_PAGES
 from pkenya.feeds.views import feeds
+from . models import Page
 
 
 def home(request):
@@ -137,6 +138,17 @@ def upload_picture(request):
         return redirect('/settings/picture/')
 
 
+def about(request):
+    content=get_object_or_404(Page,title='About')
+    return render(request,"core/about.html",{"content":content})
+
+
+def help(request):
+    return render(request,'core/help.html')
+
+def globaltags():
+    '''This create and gets all articles in the globle tag'''
+    return "working"
 @login_required
 def save_uploaded_picture(request):
     try:

@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{% load staticfiles %}
+{% load i18n %}
+{% block head %}
+
+{%endblock head%}
+
+{%block main%}
+<h2>Please Select a region.</h2>
+<div class="container">
+  <div class="page-header">
+    <ul class="list-group">
+      {%for region in regions %}
+      <a href="{%url 'diplomat' region%}"><li class="list-group-item">{{region}}</li></a>
+      {%endfor%}
+    </ul>
+  </div>
+</div>
+{%endblock main%}

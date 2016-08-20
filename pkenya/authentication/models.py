@@ -15,6 +15,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, null=True, blank=True)
     url = models.CharField(max_length=50, null=True, blank=True)
     job_title = models.CharField(max_length=50, null=True, blank=True)
+    is_diplomat=models.BooleanField(default=False)
     # reputation = models.IntegerField(default=0)
     # language = models.CharField(max_length=5, default='en')
 

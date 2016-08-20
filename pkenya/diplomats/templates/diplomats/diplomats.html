@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{% load staticfiles %}
+{% load i18n %}
+{% block head %}
+
+{%endblock head%}
+
+{%block main%}
+<h2>List of Diplomats from {{region}}.</h2>
+<div class="container">
+  <div class="page-header">
+    <ul class="list-group">
+      {%for diplomat in diplomats %}
+      <a href="{% url 'name' diplomat.user %}"><li class="list-group-item">{{diplomat.user}}</li></a>
+      {%endfor%}
+    </ul>
+  </div>
+</div>
+{%endblock main%}

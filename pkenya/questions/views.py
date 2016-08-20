@@ -162,3 +162,9 @@ def favorite(request):
         user.profile.notify_favorited(question)
 
     return HttpResponse(question.calculate_favorites())
+
+@login_required
+def questionbyauthor(request,name):
+    questions=Question.objects.filter(user__username=str(name))
+    print questions
+    return render(request,"questions/questionby.html",{"question":questions,"name":name})

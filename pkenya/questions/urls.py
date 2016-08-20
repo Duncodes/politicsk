@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^answer/accept/$', views.accept, name='accept'),
     url(r'^answer/vote/$', views.vote, name='vote'),
     url(r'^(\d+)/$', views.question, name='question'),
+    url(r'^(?P<name>[^/]+)/', views.questionbyauthor, name='name'),
 ]

@@ -23,13 +23,14 @@
     <!-- <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
     <!-- <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
     <!-- <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
-    <!-- <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
+    <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <!-- <link rel="stylesheet" href="https://bootswatch.com/spacelab/bootstrap.min.css" media="screen" title="no title" charset="utf-8"> -->
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" media="screen" title="no title" charset="utf-8">
     <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/bootcamp.js' %}"></script>
     {% block head %}{% endblock %}
   </head>
@@ -50,6 +51,14 @@
             </div>
             <div class="collapse navbar-collapse" id="menu">
               <ul class="nav navbar-nav">
+                {% if not user.is_authenticated%}
+                 <li class=""><a href="" class="">{% trans 'Home'%}</a></li>
+                 <li class=""><a href="" class="">{% trans 'global'%}</a></li>
+                 <li class=""><a href="" class="">{% trans 'Natinal'%}</a></li>
+                 <li class=""><a href="{% url 'regions'%}" class="">{% trans 'Regions'%}</a></li>
+                {%endif%}
+                <li class=""><a href="{% url 'regions'%}" class="">{% trans 'Regions'%}</a></li>
+                {%if user.is_authenticated%}
                 <li>
                   <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
                     <span class="glyphicon glyphicon-bell"></span>
@@ -57,16 +66,18 @@
                 </li>
                 <li><a href="{% url 'feeds' %}">{% trans 'My world' %}</a></li>
                 <li><a href="{% url 'articles' %}">{% trans 'Top stories' %}</a></li>
-                <li><a href="{% url 'questions' %}">{% trans 'Q&A' %}</a></li>
+                <!-- <li><a href="{% url 'questions' %}">{% trans 'Q&A' %}</a></li> -->
+              {%endif%}
                 {% if user.is_superuser%}
                 <li><a href="{% url 'network' %}">{% trans 'Users' %}</a></li>
                 {%endif%}
                 {% if user.is_superuser%}
                 <li><a href="{% url 'themes' %}">{% trans 'Themes' %}</a></li>
+                <li><a href="/admin">{% trans 'Admin' %}</a></li>
                 {%endif%}
-              
               </ul>
-              {% if not hide_search %}
+
+              {% if not hide_search and user.is_authenticated %}
                 <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
                   <div class="input-group" style="width:210px">
                     <input type="text" class="form-control" name="q" placeholder="Search">
@@ -76,7 +87,9 @@
                   </div>
                 </form>
               {% endif %}
+
               <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
                 <li>
                   <a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a>
                 </li>
@@ -89,6 +102,11 @@
                     <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                   </ul>
                 </li>
+              {%else%}
+              <li class=""><a href="{% url 'login' %}">{% trans 'Login' %}</a></li>
+               <li class=""><a href="{% url 'about'%}" class="">{% trans 'About us' %}</a></li>
+               <li class=""><a href="{% url 'help' %}" class="">{% trans 'Help' %}</a></li>
+              {%endif%}
               </ul>
             </div>
           </div>
@@ -103,6 +121,9 @@
       </main>
       <script src="{% static 'js/notifications.js' %}"></script>
       <script src="{% static 'js/check_messages.js' %}"></script>
+      <script>
+
+      </script>
     {% endblock body %}
     <script src="{% static 'js/ga.js' %}"></script>
   </body>

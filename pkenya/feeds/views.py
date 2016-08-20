@@ -106,11 +106,13 @@ def check(request):
 @ajax_required
 def post(request):
     last_feed = request.POST.get('last_feed')
+    print last_feed
     user = request.user
     csrf_token = unicode(csrf(request)['csrf_token'])
     feed = Feed()
     feed.user = user
     post = request.POST['post']
+    print post
     post = post.strip()
     if len(post) > 0:
         feed.post = post[:255]

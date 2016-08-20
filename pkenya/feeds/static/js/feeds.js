@@ -15,6 +15,10 @@ $(function () {
     }
   });
 
+  $(document).on('ready', function() {
+    $("#input-4").fileinput({showCaption: false});
+  });
+
   $("#compose-form textarea[name='post']").keydown(function (evt) {
     var keyCode = evt.which?evt.which:evt.keyCode;
     if (evt.ctrlKey && (keyCode == 10 || keyCode == 13)) {
@@ -42,6 +46,7 @@ $(function () {
 
   $(".btn-post").click(function () {
     var last_feed = $(".stream li:first-child").attr("feed-id");
+    console.log(last_feed);
     if (last_feed == undefined) {
       last_feed = "0";
     }
@@ -87,7 +92,7 @@ $(function () {
     return false;
   });
 
-  $("ul.stream").on("click", ".comment", function () { 
+  $("ul.stream").on("click", ".comment", function () {
     var post = $(this).closest(".post");
     if ($(".comments", post).hasClass("tracking")) {
       $(".comments", post).slideUp();
@@ -201,7 +206,7 @@ $(function () {
     var feed_source = $("#feed_source").val();
     $.ajax({
       url: '/feeds/load_new/',
-      data: { 
+      data: {
         'last_feed': last_feed,
         'feed_source': feed_source
       },
