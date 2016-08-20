@@ -36,9 +36,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'pkenya.activities',
     'pkenya.articles',
+    'pkenya.forum',
     'pkenya.authentication',
     'pkenya.core',
     'pkenya.feeds',
+    'pkenya.kenyanation',
     'pkenya.messenger',
     'pkenya.questions',
     'pkenya.search',
@@ -72,7 +74,7 @@ GRAPPELLI_SWITCH_USER=True
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 

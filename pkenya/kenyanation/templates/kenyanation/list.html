@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/img.css'%}" media="screen" title="no title" charset="utf-8">
+{% endblock head %}
+
+{% block main %}
+
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="page-header">
+      <h3>List of political parties</h3>
+    </div>
+  <ul class="list-group">
+    {%for n in natinal_list %}
+    <li class="list-group-item">{{ n.name }}</li>
+    {%endfor%}
+  </ul>
+</div>
+
+<div class="col-md-4">
+  <div class="page-header">
+    <h3>Collection of political figures.</h3>
+  </div>
+<ul class="list-group">
+  {%for n in natinal_list %}
+  <img src={% static 'img/office-1.jpeg' %} style="height:200px"></img>
+  {%endfor%}
+</ul>
+</div>
+
+</div>
+
+{% endblock main %}

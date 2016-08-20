@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^questions/', include('pkenya.questions.urls')),
     url(r'^articles/', include('pkenya.articles.urls')),
     url(r'^messages/', include('pkenya.messenger.urls')),
+    url(r'^nation/', include('pkenya.kenyanation.urls')),
     url(r'^notifications/$', activities_views.notifications,
         name='notifications'),
     url(r'^notifications/last/$', activities_views.last_notifications,

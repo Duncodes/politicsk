@@ -29,6 +29,10 @@
           {% if page_user.profile.url %}
           <li><span class="glyphicon glyphicon-globe"></span> <a href="{{ page_user.profile.get_url }}" target="_blank">{{ page_user.profile.get_url }}</a></li>
           {% endif %}
+
+          {%if page_user.profile.is_diplomat%}
+          <li><span class="glyphicon glyphicon-globe">Follow</span></li>
+          {%endif%}
         </ul>
       </div>
       <div class="col-md-9">

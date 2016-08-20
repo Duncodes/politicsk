@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from pkenya.authentication.models import Profile
-from .models import Page
+from .models import Page,FundRaisingPage,Events
 class ProfileInline(admin.StackedInline):
     model=Profile
     list_display=('is_diplomat')
@@ -13,6 +13,8 @@ class UserAdmin(UserAdmin):
 class PageAdmin(admin.ModelAdmin):
     list_display=('title','pub_date','was_published_recently')
 
-admin.site.register(Page,PageAdmin)
 admin.site.unregister(User)
+admin.site.register(FundRaisingPage)
+admin.site.register(Events)
+admin.site.register(Page,PageAdmin)
 admin.site.register(User,UserAdmin)

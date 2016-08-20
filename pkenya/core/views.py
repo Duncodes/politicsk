@@ -19,7 +19,8 @@ def home(request):
     if request.user.is_authenticated():
         return feeds(request)
     else:
-        return render(request, "core/cover.html")
+        pagedata=get_object_or_404(Page,title='Home')
+        return render(request, "core/cover.html",{"content":pagedata})
 
 
 @login_required
@@ -141,6 +142,7 @@ def upload_picture(request):
 def about(request):
     content=get_object_or_404(Page,title='About')
     return render(request,"core/about.html",{"content":content})
+
 
 
 def help(request):

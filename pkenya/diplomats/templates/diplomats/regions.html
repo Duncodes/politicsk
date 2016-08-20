@@ -9,11 +9,12 @@
 <h2>Please Select a region.</h2>
 <div class="container">
   <div class="page-header">
+    <h3>Click on you region to get the latest from your region find you rep.</h3>
+    </div>
     <ul class="list-group">
       {%for region in regions %}
-      <a href="{%url 'diplomat' region%}"><li class="list-group-item">{{region}}</li></a>
+      <a href="{%url 'diplomat' region.name%}"><li class="list-group-item">{{region.name}}</li></a>
       {%endfor%}
     </ul>
-  </div>
 </div>
 {%endblock main%}

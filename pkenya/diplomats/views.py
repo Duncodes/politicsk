@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from pkenya.authentication.models import Profile
+from . models import Regions
 def regions(request):
-    regions=["Nyanza","Nyeri"]
+    regions=Regions.objects.all()
     return render(request,"diplomats/regions.html",{"regions":regions})
 
 def viewdiplomats(request,region):
