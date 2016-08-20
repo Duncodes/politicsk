@@ -6,6 +6,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PROJECT_DIR = Path(__file__).parent
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -97,12 +98,12 @@ LOCALE_PATHS = (PROJECT_DIR.child('locale'), )
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_ROOT = PROJECT_DIR.parent.child('static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'/static/')
+
+# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    PROJECT_DIR.child('static'),
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
